@@ -8,7 +8,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.cache.Cache;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,9 +40,9 @@ public class EmployerService {
 
     public Map<Long, Employee> getAllEmployees(){
         Map<Long, Employee> employeeMap = new HashMap<>();
-        Iterator<Cache.Entry> employeeCaches = ((Cache)cacheManager.getCache("employeeCache").getNativeCache()).iterator();
+        Iterator<javax.cache.Cache.Entry> employeeCaches = ((javax.cache.Cache)cacheManager.getCache("employeeCache").getNativeCache()).iterator();
         while (employeeCaches.hasNext()){
-            Cache.Entry entry = employeeCaches.next();
+            javax.cache.Cache.Entry entry = employeeCaches.next();
             employeeMap.put((Long) entry.getKey(), (Employee)entry.getValue());
         }
 

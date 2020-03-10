@@ -2,6 +2,7 @@ package com.iab.cache.controller;
 
 import com.iab.cache.model.Employee;
 import com.iab.cache.service.EmployerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@Slf4j
 public class EmployerController {
 
     @Autowired
