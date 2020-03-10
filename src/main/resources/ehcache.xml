@@ -1,0 +1,36 @@
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
+
+    <service>
+        <jsr107:defaults enable-statistics="true" enable-management="true"/>
+    </service>
+
+    <persistence directory="C:/Workspace/cache/cache/target/cache/disk"/>
+
+    <cache alias="employeeCache">
+        <key-type>java.lang.Object</key-type>
+         <value-type>java.lang.Object</value-type>
+        <expiry>
+            <none/>
+        </expiry>
+        <listeners>
+            <listener>
+                <class>com.iab.cache.config.CustomCacheEventLogger</class>
+                <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>UNORDERED</event-ordering-mode>
+                <events-to-fire-on>CREATED</events-to-fire-on>
+                <events-to-fire-on>UPDATED</events-to-fire-on>
+                <events-to-fire-on>EXPIRED</events-to-fire-on>
+                <events-to-fire-on>REMOVED</events-to-fire-on>
+                <events-to-fire-on>EVICTED</events-to-fire-on>
+            </listener>
+        </listeners>
+        <resources>
+            <heap unit="entries">100</heap>
+            <offheap unit="MB">80</offheap>
+            <disk unit="GB" persistent="true">100</disk>
+        </resources>
+    </cache>
+</config>
